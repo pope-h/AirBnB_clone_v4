@@ -1,92 +1,222 @@
-# <img src="https://intranet.hbtn.io/assets/holberton-logo-default-27055cb2f875eb10bf3b3942e52a24581bc0667695bdc856d4f08b469b678000.png" width="30"> AirBnB Clone V.4 - Web dynamic
+# AirBnB Clone V4
 
-## Synopsis
-This is the 4th version of our AirBnB clone project. We will be using python3, RESTful API, MySQL, Flask, and jQuery AJAX
+This is a complete full-stack web application, integrating a MySQL database and Flask RESTful API with a dynamic HTML5/CSS3/jQuery front-end.
 
-<p><img src="https://s3.amazonaws.com/intranet-projects-files/concepts/74/hbnb_step5.png" alt="step2"></p>
+It was based off the basic characteristics of the Airbnb platform.
 
-## Table of Contents
-* [Environment](#environment)
-* [Installation](#installation)
-* [File Descriptions](#file-descriptions)
-* [Usage](#usage)
-* [Examples of use](#examples-of-use)
-* [Bugs](#bugs)
-* [Authors](#authors)
-* [License](#license)
+![](./readme_images/web_dynamic_diagram.png)
 
-## Environment
-This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3), jQuery (version 3.x), MySQL (version 5.7), Flask, and Chrome (version 57.0)
+# Iterations
 
-## Installation
-** UNDER CONSTRUCTION **
+The project was developed in several iterations, being V4 the last one. This iterations encompassed several concepts and integrations that will be explained below.
 
-## File Structure
-- **[api](api)** directory contains Flask web applications for a RESTful API
-- **[models](models)** directory contains all classes used for this project:
-- **[tests](tests)** directory contains all unit test cases for this project.
-- **[web_dynamic](web_dynamic)** directory contains all files necessary to start a dynamic Flask web application.
-- **[web_flask](web_flask)** directory contains all files necessary to start a Flask web application.
-- **[web_static](web_static)** directory contains all html, css and images used for the static website.
-- [0-setup_web_static.sh](0-setup_web_static.sh) - bash script that sets up web servers for the deployment of `web_static`
-- [1-pack_web_static.py](1-pack_web_static.py) - Fabric script that generates a .tgz archive from the contents of `web_static`, using the function `do_pack`
-- [2-do_deploy_web_static.py](2-do_deploy_web_static.py) - Fabric script (based on [1-pack_web_static.py](1-pack_web_static.py)) that distributes an archive to web servers, using the function `do_deploy`
-- [3-deploy_web_static.py](3-deploy_web_static.py) - Fabric script (based on [2-do_deploy_web_static.py](2-do_deploy_web_static.py)) that creates and distributes an archive to web servers, using the function `deploy`
-- [AUTHORS](AUTHORS) - list of Authors who have worked on this project.
-- [console.py](console.py) - the console is a command line used to interact with the storage engines. 
-- [setup_mysql_dev.sql](setup_mysql_dev.sql) - MySQL script to set-up the hbnb_dev_db database.
-- [setup_mysql_test.sql](setup_mysql_test.sql) - MySQL script to set-up the hbnb_test_db database.
+## The Console
 
-## Examples of Use
-** UNDER CONSTRUCTION **
-### Console Example:
+The first iteration of the project consisted on building an interactive console in order to allow for development testing.
+
+![The Console](./readme_images/the_console_diagram.png)
+
+The Console was coded in order to work with a temporary storage engine based on JSON, and included the next features:
+
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
+
+The console has 2 modes.
+
+**Interactive**
+
 ```
-vagrantAirBnB_clone$./console.py
+$ ./console.py
 (hbnb) help
 
 Documented commands (type help <topic>):
 ========================================
-EOF  all  create  destroy  help  quit  show  update
+EOF  help  quit
 
-(hbnb) all MyModel
-** class doesn't exist **
-(hbnb) create BaseModel
-7da56403-cc45-4f1c-ad32-bfafeb2bb050
-(hbnb) all BaseModel
-[[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}]
-(hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
-[BaseModel] (7da56403-cc45-4f1c-ad32-bfafeb2bb050) {'updated_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772167), 'id': '7da56403-cc45-4f1c-ad32-bfafeb2bb050', 'created_at': datetime.datetime(2017, 9, 28, 9, 50, 46, 772123)}
-(hbnb) destroy BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
-(hbnb) show BaseModel 7da56403-cc45-4f1c-ad32-bfafeb2bb050
-** no instance found **
+(hbnb)
+(hbnb)
 (hbnb) quit
+$
 ```
 
-## Bugs
-No known bugs at this time.
+**Non Interactive**
 
-## Authors
+```
+$ echo "help" | ./console.py
+(hbnb)
 
-###### Version 4
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
 
-- Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-- Thomas Wang - [Github](https://github.com/thomaspwang) / [Twitter](https://twitter.com/thpwang)
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
+```
 
-###### Version 3
+## Web Static
 
-- Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-- Felicia Hsieh - [Github](https://github.com/feliciahsieh) / [Twitter](https://twitter.com/feliciahsiehsw)
+This part of the project consisted in building the basic CSS and HTML source code.
 
-###### Version 2
+![](./readme_images/web_static_diagram.png)
 
-- Andrew Birnberg - [Github](https://github.com/birnbera) / [Twitter](https://twitter.com/birnbera)
-- Thomas Wang - [Github](https://github.com/thomaspwang) / [Twitter](https://twitter.com/thpwang)
+![](./readme_images/web_static.png)
 
-###### Version 1
+## MySQL
 
-- Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-- Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
-- Ekarika Nsemeke - [Github](https://github.com/pope-h) / [Twitter](https://twitter.com/officialpope_h)
+This section consisted on the data modeling for the relational database in MySQL.
 
-## License
-Public Domain. No copywrite protection.
+![](./readme_images/mysql_diagram.png)
+
+![](./readme_images/mysql_model.jpg)
+
+## Web Framework
+
+This iteration consisted on building the first approach to dynamic content for the application by using Flask and Jinja, and effectively having Server Side Render.
+
+For this development, the MySQL database started being used in order to serve content to the client, and provide it with back end based features.
+
+All of the HTML and CSS source code started being hosted in the server, and no items were hard coded, but instead produced through dynamic data integration.
+
+![](./readme_images/web_framework.jpg)
+
+![](./readme_images/web_framework_diagram.png)
+
+## RESTful API
+
+Although the Server Side Render with Flask and Jinja was interesting, this section consisted on developing a different approach to dynamic content generation, starting with a RESTful API.
+
+This Application Programming Interface was built with Flask and SQLAlchemy in order to work with MySQL and respond to HTTP requests.
+
+![](./readme_images/restful_api_diagram.png)
+
+The endpoints can be seen below.
+
+    GET /api/v1/status
+    **Returns the status of the API
+
+    GET /api/v1/stats
+    **Retrieves the number of each objects by type
+    GET /api/v1/states
+    **Retrieves the list of all State objects
+
+    GET /api/v1/states/<state_id>
+    **Retrieves a State object
+    DELETE /api/v1/states/<state_id>
+    **Deletes a State object
+    POST /api/v1/states
+    **Creates a State
+    PUT /api/v1/states/<state_id>
+    **Updates a State object
+
+    GET /api/v1/states/<state_id>/cities
+    **Retrieves the list of all City objects of a State
+    GET /api/v1/cities/<city_id>
+    **Retrieves a City object
+    DELETE /api/v1/cities/<city_id>
+    Deletes a City object
+    POST /api/v1/states/<state_id>/cities
+    Creates a City
+    PUT /api/v1/cities/<city_id>
+    Updates a City object
+
+    GET /api/v1/amenities
+    **Retrieves the list of all Amenity objects
+    GET /api/v1/amenities/<amenity_id>
+    **Retrieves a Amenity object
+    DELETE /api/v1/amenities/<amenity_id>
+    **Deletes a `menity object
+    POST /api/v1/amenities
+    **Creates a Amenity
+    PUT /api/v1/amenities/<amenity_id>
+    **Updates a Amenity object
+
+    GET /api/v1/users
+    **Retrieves the list of all User objects
+    GET /api/v1/users/<user_id>
+    **Retrieves a User object
+    DELETE /api/v1/users/<user_id>
+    **Deletes a User object
+    POST /api/v1/users
+    **Creates a User
+    PUT /api/v1/users/<user_id>
+    **Updates a User object
+
+    GET /api/v1/cities/<city_id>/places
+    **Retrieves the list of all Place objects of a City
+    GET /api/v1/places/<place_id>
+    **Retrieves a Place object
+    DELETE /api/v1/places/<place_id>
+    **Deletes a Place object
+    POST /api/v1/cities/<city_id>/places
+    **Creates a Place
+    PUT /api/v1/places/<place_id>
+    **Updates a Place object
+
+    GET /api/v1/places/<place_id>/reviews
+    **Retrieves the list of all Review objects of a Place
+    GET /api/v1/reviews/<review_id>
+    **Retrieves a Review object
+    DELETE /api/v1/reviews/<review_id>
+    **Deletes a Review object
+    POST /api/v1/places/<place_id>/reviews
+    **Creates a Review
+    PUT /api/v1/reviews/<review_id>
+    **Updates a Review object
+
+    GET /api/v1/places/<place_id>/amenities
+    **Retrieves the list of all Amenity objects of a Place
+    DELETE /api/v1/places/<place_id>/amenities/<amenity_id>
+    **Deletes a Amenity` object to a Place
+    POST /api/v1/places/<place_id>/amenities/<amenity_id>
+    **Link a Amenity object to a Place
+
+    POST /api/v1/places_search
+    **Retrieves all Place objects depending of the JSON in the body of the request.
+
+    GET /apidocs
+    **Gets the documentation of the API built in Flasgger
+
+## Web Dynamic
+
+This was the final iteration of the project and consisted in changing the Server Side Render for Client Based Render using JavaScript with jQuery, and the RESTful API from before.
+
+![Image result for jquery and javascript](https://miro.medium.com/max/600/1*8Whvj5G9f5DVmCBIzywYww.png)
+
+![](./readme_images/web_dynamic_diagram.png)
+
+# Challenges and Future Features
+
+This was a big project that helped in understanding how a Fullstack application works. Some of the most challenging parts had to do with the Object Relational Mapping for the API, and the Client Based Render.
+
+For future projects, this serves as a great base for beginning to understand other technologies such as React, NodeJS, and Mongo, among others.
+
+# About Myself
+
+🎯 I am a Fullstack developer in love with technology and keen to learn new things everyday. My strenghts reside in Python and JavaScript although I am not afraid to take on any other language.
+
+🎯 I have experience developing both back end and front end. I have used technologies such as Bootstrap, SASS, React, Flask, Django, Express, SQL, MongoDB, AWS, among others.
+
+🎯 I also studied Sound Engineering some years ago, and I love music, videogames, and audiovisual media.
+
+🔹 [LinkedIn](https://www.linkedin.com/in/jhoan-stiven-zamora-caicedo/)
+
+🔹 [Twitter](https://twitter.com/JhoanZamora11)
+
+🎯 As an understudy of Jhoan, my details are given below.
+
+🔹 [LinkedIn](https://www.linkedin.com/in/ekarika-nsemeke-55a8bb14b/)
+
+🔹 [Twitter](https://twitter.com/officialpope_h)
